@@ -22,7 +22,6 @@ class ArticleViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         configureCell()
-        print("DEBUG: AAA")
     }
     
     //MARK: - Helpers
@@ -31,5 +30,7 @@ class ArticleViewCell: UITableViewCell {
         titleLabel.text = "Test title"
         descriptionLabel.text = "test description"
         thumbnailImageView.image = UIImage(systemName: "pencil.and.outline")
+        thumbnailImageView.layer.cornerRadius = 5
+        thumbnailImageView.contentMode = .scaleAspectFill
     }
 }
