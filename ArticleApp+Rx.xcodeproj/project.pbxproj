@@ -15,6 +15,7 @@
 		633085EF27107F700086BE58 /* ArticleApp_RxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633085EE27107F700086BE58 /* ArticleApp_RxTests.swift */; };
 		633085F927107F700086BE58 /* ArticleApp_RxUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633085F827107F700086BE58 /* ArticleApp_RxUITests.swift */; };
 		633085FB27107F700086BE58 /* ArticleApp_RxUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633085FA27107F700086BE58 /* ArticleApp_RxUITestsLaunchTests.swift */; };
+		6330860D2710884E0086BE58 /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6330860C2710884E0086BE58 /* ArticleViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		633085F427107F700086BE58 /* ArticleApp+RxUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ArticleApp+RxUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		633085F827107F700086BE58 /* ArticleApp_RxUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleApp_RxUITests.swift; sourceTree = "<group>"; };
 		633085FA27107F700086BE58 /* ArticleApp_RxUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleApp_RxUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		6330860C2710884E0086BE58 /* ArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +153,7 @@
 		6330860A2710850B0086BE58 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				6330860C2710884E0086BE58 /* ArticleViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -296,6 +299,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				633085D827107F670086BE58 /* AppDelegate.swift in Sources */,
+				6330860D2710884E0086BE58 /* ArticleViewController.swift in Sources */,
 				633085DA27107F670086BE58 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
