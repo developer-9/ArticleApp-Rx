@@ -6,10 +6,14 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class ArticleViewController: UIViewController {
     
     //MARK: - Properties
+    
+    private let disposeBag = DisposeBag()
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -17,7 +21,33 @@ class ArticleViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
     
     //MARK: - Helpers
+    
+    private func configureTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
+}
+
+//MARK: - UITableViewDataSource
+
+extension ArticleViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleViewCell", for: indexPath) as UITableViewCell
+        cell.backgroundColor = .red
+        return cell
+    }
+}
+
+//MARK: - UITableViewDelegate
+
+extension ArticleViewController: UITableViewDelegate {
+    
 }
