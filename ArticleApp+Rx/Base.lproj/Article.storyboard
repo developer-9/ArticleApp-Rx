@@ -31,7 +31,7 @@
                                 <rect key="frame" x="0.0" y="120" width="414" height="776"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ArticleViewCell" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="80" id="Bb2-jc-HZb">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ArticleViewCell" rowHeight="80" id="Bb2-jc-HZb" customClass="ArticleViewCell" customModule="ArticleApp_Rx" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="44.5" width="414" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Bb2-jc-HZb" id="MTT-9L-PUW">
@@ -77,6 +77,11 @@
                                                 <constraint firstItem="QmA-KY-xK7" firstAttribute="top" secondItem="MTT-9L-PUW" secondAttribute="top" constant="11" id="vL5-wl-6a6"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="descriptionLabel" destination="H8R-Lq-s77" id="rjh-si-yak"/>
+                                            <outlet property="thumbnailImageView" destination="j3i-Sh-A4g" id="n3k-dY-hwV"/>
+                                            <outlet property="titleLabel" destination="QmA-KY-xK7" id="FfF-xd-Xma"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>

@@ -21,7 +21,7 @@ class ArticleViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        configureTableView()
     }
     
     //MARK: - Helpers
@@ -29,6 +29,7 @@ class ArticleViewController: UIViewController {
     private func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.rowHeight = ArticleViewCell.cellHeight
     }
 }
 
@@ -40,8 +41,7 @@ extension ArticleViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleViewCell", for: indexPath) as UITableViewCell
-        cell.backgroundColor = .red
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleViewCell", for: indexPath) as! ArticleViewCell
         return cell
     }
 }

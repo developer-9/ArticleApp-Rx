@@ -11,11 +11,25 @@ class ArticleViewCell: UITableViewCell {
     
     //MARK: - Properties
     
+    static let cellHeight: CGFloat = 80.0
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var thumbnailImageView: UIImageView!
     
     //MARK: - Lifecycle
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        configureCell()
+        print("DEBUG: AAA")
+    }
+    
     //MARK: - Helpers
+    
+    private func configureCell() {
+        titleLabel.text = "Test title"
+        descriptionLabel.text = "test description"
+        thumbnailImageView.image = UIImage(systemName: "pencil.and.outline")
+    }
 }
