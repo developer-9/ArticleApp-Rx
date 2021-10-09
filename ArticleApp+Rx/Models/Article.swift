@@ -6,3 +6,14 @@
 //
 
 import Foundation
+
+struct ArticleResponse: Codable {
+    let articles: [Article]
+}
+
+struct Article: Codable {
+    let title: String
+    let description: String?
+    let urlToImage: String?
+    let url: String?
+}

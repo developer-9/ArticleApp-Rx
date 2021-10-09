@@ -6,3 +6,18 @@
 //
 
 import Foundation
+import 
+import RxSwift
+
+protocol ArticleAPIClientProtocol {
+    func getArticleList() -> Single<[Article]>
+}
+
+class ArticleAPIClient: ArticleAPIClientProtocol {
+    
+    func getArticleList() -> Single<[Article]> {
+        return Single<[Article]>.create(subscribe: { singleEvent in
+            
+        })
+    }
+}
