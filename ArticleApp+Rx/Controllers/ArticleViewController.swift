@@ -11,6 +11,8 @@ class ArticleViewController: UIViewController {
     
     //MARK: - Properties
     
+    @IBOutlet weak var tableView: UITableView!
+    
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
