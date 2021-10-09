@@ -6,18 +6,29 @@
 //
 
 import Foundation
-import 
+import Alamofire
 import RxSwift
+import RxCocoa
 
 protocol ArticleAPIClientProtocol {
-    func getArticleList() -> Single<[Article]>
+    func getArticleList() -> Single<ArticleResponse>
 }
 
 class ArticleAPIClient: ArticleAPIClientProtocol {
     
-    func getArticleList() -> Single<[Article]> {
-        return Single<[Article]>.create(subscribe: { singleEvent in
-            
+    private let manager = AF
+    private let baseUrl = ""
+    private var articleResponse: ArticleResponse?
+    
+    func getArticleList() -> Single<ArticleResponse> {
+        return Single<ArticleResponse>.create(subscribe: { singleEvent in
+            self.manager.request(baseUrl, method: .get).validate().responseJSON { response in
+                guard let data = response.data else { return }
+                do {
+                    self.articleResponse = try JSONDecoder().decode(ArticleResponse.self, from: data)
+                }
+            }
+            return Disposables.create()
         })
     }
 }
