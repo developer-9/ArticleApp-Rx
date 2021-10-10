@@ -27,7 +27,7 @@ class ArticleViewController: UIViewController {
         viewModel.fetchArticles()
         
         tableView.rx.itemSelected.subscribe(onNext: { indexPath in
-            print("DEBUG: DID SELECT ROW AT \(indexPath.row)")
+            let url = viewModel.articles.value[indexPath.row].url
         }).disposed(by: disposeBag)
         
         viewModel.articles.asObservable().bind(to: tableView.rx.items) { (tableView, row, model) in
