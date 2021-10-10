@@ -22,10 +22,14 @@ class ArticleAPIClient: ArticleAPIClientProtocol {
     
     func getArticleList() -> Single<ArticleResponse> {
         return Single<ArticleResponse>.create(subscribe: { singleEvent in
-            self.manager.request(baseUrl, method: .get).validate().responseJSON { response in
+            self.manager.request(self.baseUrl, method: .get).validate().responseJSON { response in
                 guard let data = response.data else { return }
                 do {
-                    self.articleResponse = try JSONDecoder().decode(ArticleResponse.self, from: data)
+                    let response = try JSONDecoder().decode(ArticleResponse.self, from: data)
+                    singleEvent(.success(response))
+                } catch let error {
+                    print("DEBUG: \(error.localizedDescription)")
+                    singleEvent(.failure(error))
                 }
             }
             return Disposables.create()
