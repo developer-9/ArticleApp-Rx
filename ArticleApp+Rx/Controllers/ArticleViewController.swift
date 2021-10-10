@@ -22,6 +22,13 @@ class ArticleViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
+        
+        let client = ArticleAPIClient()
+        client.getArticleList().subscribe { articleResponse in
+            print(("DEBUG: AAA \(articleResponse)"))
+        } onFailure: { error in
+            print("DEBUG: ERROR \(error.localizedDescription)")
+        }.disposed(by: disposeBag)
     }
     
     //MARK: - Helpers
