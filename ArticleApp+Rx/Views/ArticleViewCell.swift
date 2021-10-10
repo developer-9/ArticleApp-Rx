@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class ArticleViewCell: UITableViewCell {
     
@@ -17,18 +18,12 @@ class ArticleViewCell: UITableViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var thumbnailImageView: UIImageView!
     
-    //MARK: - Lifecycle
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        configureCell()
-    }
-    
     //MARK: - Helpers
     
-    private func configureCell() {
-        titleLabel.text = "Test title"
-        descriptionLabel.text = "test description"
+    func configureCell(_ model: Article) {
+        titleLabel.text = model.title
+        descriptionLabel.text = model.description
+        guard let url =
         thumbnailImageView.image = UIImage(systemName: "pencil.and.outline")
         thumbnailImageView.layer.cornerRadius = 5
         thumbnailImageView.contentMode = .scaleAspectFill

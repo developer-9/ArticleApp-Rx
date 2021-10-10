@@ -16,6 +16,8 @@ class ArticleViewModel {
     private let disposeBag = DisposeBag()
     
     private let client: ArticleAPIClientProtocol
+    let isLoading = BehaviorRelay<Bool>(value: false)
+    let isError = BehaviorRelay<Bool>(value: false)
     let articles = BehaviorRelay<[Article]>(value: [])
     
     //MARK: - Lifecycle
@@ -27,5 +29,21 @@ class ArticleViewModel {
     //MARK: - Helpers
     
     func fetchArticles() {
+        
+        executeStartRequest(true)
+        
+        client.getArticleList().subscribe { articleResponse in
+            self.articles.accept(articleResponse.articles)
+            self.isLoading.accept(false)
+            
+        } onFailure: { error in
+            self.executeStartRequest(false)
+            print("DEBUG: ERROR \(error.localizedDescription)")
+        }.disposed(by: disposeBag)
+    }
+    
+    private func executeStartRequest(_ bool: Bool) {
+        isLoading.accept(bool)
+        isError.accept(!bool)
     }
 }

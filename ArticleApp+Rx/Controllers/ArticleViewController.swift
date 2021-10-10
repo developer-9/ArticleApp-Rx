@@ -23,38 +23,23 @@ class ArticleViewController: UIViewController {
         super.viewDidLoad()
         configureTableView()
         
-        let client = ArticleAPIClient()
-        client.getArticleList().subscribe { articleResponse in
-            print(("DEBUG: AAA \(articleResponse)"))
-        } onFailure: { error in
-            print("DEBUG: ERROR \(error.localizedDescription)")
+        let viewModel = ArticleViewModel(client: ArticleAPIClient())
+        viewModel.fetchArticles()
+        
+        tableView.rx.itemSelected.subscribe(onNext: { indexPath in
+            print("DEBUG: DID SELECT ROW AT \(indexPath.row)")
+        }).disposed(by: disposeBag)
+        
+        viewModel.articles.asObservable().bind(to: tableView.rx.items) { (tableView, row, model) in
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleViewCell") as! ArticleViewCell
+            cell.configureCell(model)
+            return cell
         }.disposed(by: disposeBag)
     }
     
     //MARK: - Helpers
     
     private func configureTableView() {
-        tableView.delegate = self
-        tableView.dataSource = self
         tableView.rowHeight = ArticleViewCell.cellHeight
     }
-}
-
-//MARK: - UITableViewDataSource
-
-extension ArticleViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleViewCell", for: indexPath) as! ArticleViewCell
-        return cell
-    }
-}
-
-//MARK: - UITableViewDelegate
-
-extension ArticleViewController: UITableViewDelegate {
-    
 }
