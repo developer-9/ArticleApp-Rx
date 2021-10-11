@@ -36,10 +36,29 @@ class WebViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureWebView()
+        loadUrl()
+        
         closeButton.rx.tap.subscribe({ [weak self] _ in
             self?.dismiss(animated: true, completion: nil)
         }).disposed(by: disposeBag)
+        
     }
     
     //MARK: - Helpers
+    
+    private func configureWebView() {
+        view.addSubview(webView)
+        webView.translatesAutoresizingMaskIntoConstraints = false
+        webView.topAnchor.constraint(equalTo: headerView.bottomAnchor).isActive = true
+        webView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        webView.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor).isActive = true
+        webView.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor).isActive = true
+    }
+    
+    private func loadUrl() {
+        guard let urlString = self.articleUrlString else { return }
+        guard let url = URL(string: urlString) else { return }
+        webView.load(URLRequest(url: url))
+    }
 }
