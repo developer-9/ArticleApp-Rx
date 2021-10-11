@@ -26,8 +26,14 @@ class ArticleViewController: UIViewController {
         let viewModel = ArticleViewModel(client: ArticleAPIClient())
         viewModel.fetchArticles()
         
-        tableView.rx.itemSelected.subscribe(onNext: { indexPath in
+        tableView.rx.itemSelected.subscribe(onNext: { [weak self] indexPath in
             let url = viewModel.articles.value[indexPath.row].url
+            let sb = UIStoryboard(name: "WebView", bundle: nil)
+            let vc = sb.instantiateInitialViewController { coder in
+                WebViewController(coder: coder, urlString: url)
+            }
+            guard let vc = vc else { return }
+            self?.present(vc, animated: true, completion: nil)
         }).disposed(by: disposeBag)
         
         viewModel.articles.asObservable().bind(to: tableView.rx.items) { (tableView, row, model) in
