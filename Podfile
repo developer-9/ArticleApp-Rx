@@ -9,6 +9,7 @@ target 'ArticleApp+Rx' do
 	pod 'RxCocoa'
 	pod 'Alamofire'
 	pod 'AlamofireImage'
+	pod 'Toast-Swift'
 
   # Pods for ArticleApp+Rx
 
