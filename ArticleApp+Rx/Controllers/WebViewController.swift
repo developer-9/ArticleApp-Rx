@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import WebKit
+import RxSwift
+import RxCocoa
 
 class WebViewController: UIViewController {
     
@@ -14,7 +17,10 @@ class WebViewController: UIViewController {
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var headerView: UIView!
     
+    private let webView = WKWebView(frame: .zero,
+                                    configuration: WKWebViewConfiguration())
     private let articleUrlString: String?
+    private let disposeBag = DisposeBag()
     
     //MARK: - Lifecycle
     
@@ -29,6 +35,10 @@ class WebViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        closeButton.rx.tap.subscribe({ [weak self] _ in
+            self?.dismiss(animated: true, completion: nil)
+        }).disposed(by: disposeBag)
     }
     
     //MARK: - Helpers
