@@ -9,6 +9,7 @@ import UIKit
 import WebKit
 import RxSwift
 import RxCocoa
+import Toast_Swift
 
 class WebViewController: UIViewController {
     
@@ -42,7 +43,11 @@ class WebViewController: UIViewController {
         closeButton.rx.tap.subscribe({ [weak self] _ in
             self?.dismiss(animated: true, completion: nil)
         }).disposed(by: disposeBag)
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        showToastView()
     }
     
     //MARK: - Helpers
@@ -60,5 +65,19 @@ class WebViewController: UIViewController {
         guard let urlString = self.articleUrlString else { return }
         guard let url = URL(string: urlString) else { return }
         webView.load(URLRequest(url: url))
+    }
+    
+    private func showToastView() {
+        let originX: CGFloat = UIScreen.main.bounds.width / 2
+        let originY: CGFloat = 96.0
+        let showPosition = CGPoint(x: originX, y: originY)
+        
+        var style = ToastStyle()
+        style.titleFont = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        style.messageFont = UIFont.systemFont(ofSize: 14, weight: .medium)
+        style.messageColor = .white
+        style.backgroundColor = .darkGray
+        
+        view.makeToast("ニュースの記事を表示しています。", duration: 2.0, point: showPosition, title: "ご覧頂きありがとうございます", image: nil, style: style, completion: nil)
     }
 }

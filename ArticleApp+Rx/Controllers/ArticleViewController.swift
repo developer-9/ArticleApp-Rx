@@ -34,6 +34,7 @@ class ArticleViewController: UIViewController {
             }
             guard let vc = vc else { return }
             self?.present(vc, animated: true, completion: nil)
+            self?.tableView.deselectRow(at: indexPath, animated: true)
         }).disposed(by: disposeBag)
         
         viewModel.articles.asObservable().bind(to: tableView.rx.items) { (tableView, row, model) in
