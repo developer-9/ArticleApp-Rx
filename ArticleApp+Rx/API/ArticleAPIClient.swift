@@ -17,7 +17,7 @@ protocol ArticleAPIClientProtocol {
 class ArticleAPIClient: ArticleAPIClientProtocol {
     
     private let manager = AF
-    private let baseUrl = "https://newsapi.org/v2/top-headlines?country=jp&apiKey=8b4bc8a3feda44bcb508b745740e735f"
+    private let baseUrl = <#APIKey#>
     private var articleResponse: ArticleResponse?
     
     func getArticleList() -> Single<ArticleResponse> {
